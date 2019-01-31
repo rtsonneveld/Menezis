@@ -25,11 +25,13 @@ namespace Menezis {
         public IEnumerator UpdateRule()
         {
             while (true) {
-                if (activeRuleState != null && !delayUpdate) {
-                    yield return activeRuleState.Update();
-                }
 
-                yield return null;
+                if (activeRuleState != null && !delayUpdate) {
+
+                    yield return activeRuleState.Update();
+                } else {
+                    yield return null;
+                }
             }
         }
 

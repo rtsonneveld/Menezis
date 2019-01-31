@@ -85,7 +85,7 @@ namespace Menezis {
         public static int Func_GetTime()
         {
             // Return time since level load in milliseconds
-            return (int)(Time.timeSinceLevelLoad * 1000) * 2;
+            return (int)(Time.timeSinceLevelLoad * 1000);
         }
 
         public static Vector3 Func_Normalize(Vector3 vector3)
@@ -106,7 +106,7 @@ namespace Menezis {
 
         public static float Func_GetDeltaTime() // delta time as int is gross
         {
-            return Time.deltaTime * 1000.0f * 2;
+            return Time.deltaTime * 1000.0f;
         }
 
         public static float VEC_AngleVector(Vector3 a, Vector3 b, int mode) // Dot product, mode = radians, degrees or something
@@ -124,12 +124,12 @@ namespace Menezis {
 
         public static float PadHorizontalAxis()
         {
-            return (Input.GetAxis("Horizontal") * 160);
+            return (Input.GetAxisRaw("Horizontal") * 160);
         }
 
         public static float PadVerticalAxis()
         {
-            return (-Input.GetAxis("Vertical") * 160);
+            return (-Input.GetAxisRaw("Vertical") * 160);
         }
 
         public static float Func_AbsoluteValue(float v)

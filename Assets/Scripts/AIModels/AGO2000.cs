@@ -8,16 +8,16 @@ using UnityEngine;
 namespace Menezis.AIModels
 {
     public class AGO2000 : Perso {
-        public int Int_0 = 200;
-        public int Int_1 = 200;
+        public int Int_0_X = 200;
+        public int Int_1_Y = 200;
         public int Int_2 = 0;
         public int Int_3 = 0;
         public Perso Perso_4;
-        public int Int_5 = 10;
+        public int Int_5_TextLayer = 10;
         public Perso Perso_6;
-        public int Int_7 = 0;
-        public int Int_8 = 0;
-        public int Int_9 = 0;
+        public int Int_7_ScoreValue = 0;
+        public int Int_8_XSpeed = 0;
+        public int Int_9_YSpeed = 0;
         public int Int_10 = 0;
         public int Int_11 = 0;
         public Vector3 Vector_12 = new Vector3(0, 0, 0);
@@ -31,7 +31,7 @@ namespace Menezis.AIModels
         public int Int_20 = 0;
         public int Int_21 = 0;
         public int Int_22 = 0;
-        public int Int_23 = 0;
+        public int Int_23_Size = 0;
         public int Int_24 = 0;
         public int Int_25 = 0;
         public int Int_26 = 0;
@@ -60,7 +60,7 @@ namespace Menezis.AIModels
                         Int_10 = ScriptAliases.Func_GetTime();
                         Int_11 = (800 - (4 * ((JFF2000)(Perso_4)).Int_30));
                         Int_22 = 0;
-                        Int_23 = 30;
+                        Int_23_Size = 30;
                         sm.ChangeActiveRuleState(Rule_2_MIC_en1_go);
                     } else {
                         if (Int_2 == 3) {
@@ -70,7 +70,7 @@ namespace Menezis.AIModels
                             if (Int_2 == 4) {
                                 Int_17 = 0;
                                 Int_10 = ScriptAliases.Func_GetTime();
-                                Int_23 = 30;
+                                Int_23_Size = 30;
                                 Int_22 = 0;
                                 sm.ChangeActiveRuleState(Rule_6_MIC_en4_go);
                             } else {
@@ -79,22 +79,22 @@ namespace Menezis.AIModels
                                     Int_18 = 180;
                                     Int_19 = 0;
                                     Int_22 = 1;
-                                    Int_23 = 40;
+                                    Int_23_Size = 40;
                                     sm.ChangeActiveRuleState(Rule_7_MIC_en5_go);
                                 } else {
                                     if (Int_2 == 6) {
                                         Int_10 = ScriptAliases.Func_GetTime();
-                                        Int_18 = Int_1;
-                                        Int_23 = 50;
+                                        Int_18 = Int_1_Y;
+                                        Int_23_Size = 50;
                                         Int_22 = 2;
                                         sm.ChangeActiveRuleState(Rule_8_MIC_en6_go);
                                     } else {
                                         if (Int_2 == 7) {
                                             Int_10 = ScriptAliases.Func_GetTime();
                                             Int_18 = 0;
-                                            Int_0 += Int_23;
-                                            Int_1 += Int_23;
-                                            Int_18 = Int_23;
+                                            Int_0_X += Int_23_Size;
+                                            Int_1_Y += Int_23_Size;
+                                            Int_18 = Int_23_Size;
                                             sm.ChangeActiveRuleState(Rule_9_MIC_flash);
                                         }
                                     }
@@ -110,12 +110,12 @@ namespace Menezis.AIModels
                 Int_18 = 0;
                 Int_19 = 0;
                 Int_20 = 0;
-                Int_23 = 30;
+                Int_23_Size = 30;
                 Int_10 = ScriptAliases.Func_GetTime();
                 sm.ChangeActiveRuleState(Rule_10_DS1_power_up);
             } else {
                 if (Int_2 == 9) {
-                    Int_23 = 30;
+                    Int_23_Size = 30;
                     Int_22 = 2;
                     sm.ChangeActiveRuleState(Rule_11_DS1_en9_go);
                 }
@@ -127,8 +127,8 @@ namespace Menezis.AIModels
         private IEnumerator Rule_1_MIC_tir_go()
         {
             // Script 0
-            Int_0 += (17 * Int_26);
-            if (Int_0 > 1000 || Cond_IsCustomBitSet(28)) {
+            Int_0_X += (17 * Int_26);
+            if (Int_0_X > 1000 || Cond_IsCustomBitSet(28)) {
                 if (((JFF2000)(Perso_4)).Perso_7 == this) {
                     ((JFF2000)(Perso_4)).Boolean_10 = false;
                 } else {
@@ -142,7 +142,7 @@ namespace Menezis.AIModels
                 }
                 StartCoroutine(Macro_8());
             } else {
-                ScriptAliases.fn_p_stJFFTXTProcedure(Int_5, new Vector3(Int_0, Int_1, 30), "/o600:.", 255);
+                ScriptAliases.fn_p_stJFFTXTProcedure(Int_5_TextLayer, new Vector3(Int_0_X, Int_1_Y, 30), "/o600:.", 255);
             }
 
             yield return null;
@@ -151,9 +151,9 @@ namespace Menezis.AIModels
         private IEnumerator Rule_2_MIC_en1_go()
         {
             // Script 0
-            Int_0 += (Int_8 * Int_26);
-            Int_1 += (Int_9 * Int_26);
-            if (globalRandomizer % 4 == 0 && (Int_0 < -200)) {
+            Int_0_X += (Int_8_XSpeed * Int_26);
+            Int_1_Y += (Int_9_YSpeed * Int_26);
+            if (globalRandomizer % 4 == 0 && (Int_0_X < -200)) {
                 StartCoroutine(Macro_8());
             }
 
@@ -167,7 +167,7 @@ namespace Menezis.AIModels
             }
 
             // Script 2
-            Int_7 = 3;
+            Int_7_ScoreValue = 3;
             StartCoroutine(Macro_6());
 
             yield return null;
@@ -176,13 +176,13 @@ namespace Menezis.AIModels
         private IEnumerator Rule_3_MIC_dec_go()
         {
             // Script 0
-            Int_0 -= (4 * Int_26);
-            if (Int_0 < -162) {
-                Int_0 += 162;
+            Int_0_X -= (4 * Int_26);
+            if (Int_0_X < -162) {
+                Int_0_X += 162;
             }
 
             // Script 1
-            ScriptAliases.fn_p_stJFFTXTProcedure(Int_5, new Vector3(Int_0, Int_1, 80), "/o600:xxxxxxxx", 255);
+            ScriptAliases.fn_p_stJFFTXTProcedure(Int_5_TextLayer, new Vector3(Int_0_X, Int_1_Y, 80), "/o600:xxxxxxxx", 255);
 
             yield return null;
         }
@@ -191,27 +191,27 @@ namespace Menezis.AIModels
         {
             // Script 0
             if (Int_17 != 0) {
-                Vector_14 = ScriptAliases.Func_Normalize(new Vector3(((JFF2000)(Perso_4)).Int_0, ((JFF2000)(Perso_4)).Int_1, 0) - new Vector3(Int_0, Int_1, 0));
-                Vector_12 = ScriptAliases.VEC_TemporalVectorCombination(Vector_14, 0.1f, ScriptAliases.Func_Normalize(new Vector3(Int_8, Int_9, 0)));
-                Int_8 = ScriptAliases.Func_Int((Vector_12.x * 15));
-                Int_9 = ScriptAliases.Func_Int((Vector_12.y * 15));
+                Vector_14 = ScriptAliases.Func_Normalize(new Vector3(((JFF2000)(Perso_4)).Int_0, ((JFF2000)(Perso_4)).Int_1, 0) - new Vector3(Int_0_X, Int_1_Y, 0));
+                Vector_12 = ScriptAliases.VEC_TemporalVectorCombination(Vector_14, 0.1f, ScriptAliases.Func_Normalize(new Vector3(Int_8_XSpeed, Int_9_YSpeed, 0)));
+                Int_8_XSpeed = ScriptAliases.Func_Int((Vector_12.x * 15));
+                Int_9_YSpeed = ScriptAliases.Func_Int((Vector_12.y * 15));
             }
 
             // Script 1
-            Int_0 += (Int_8 * Int_26);
-            Int_1 += (Int_9 * Int_26);
+            Int_0_X += (Int_8_XSpeed * Int_26);
+            Int_1_Y += (Int_9_YSpeed * Int_26);
             if (Boolean_15) {
-                ScriptAliases.fn_p_stJFFTXTProcedure(Int_5, new Vector3(Int_0, Int_1, 30), "/o200:.", 255);
+                ScriptAliases.fn_p_stJFFTXTProcedure(Int_5_TextLayer, new Vector3(Int_0_X, Int_1_Y, 30), "/o200:.", 255);
                 Boolean_15 = false;
             } else {
-                ScriptAliases.fn_p_stJFFTXTProcedure(Int_5, new Vector3(Int_0, Int_1, 30), "/o400:.", 255);
+                ScriptAliases.fn_p_stJFFTXTProcedure(Int_5_TextLayer, new Vector3(Int_0_X, Int_1_Y, 30), "/o400:.", 255);
                 Boolean_15 = true;
             }
 
             // Script 2
             StartCoroutine(Macro_2());
             if (globalRandomizer % 2 == 0 && (!(Perso_4.Cond_IsCustomBitSet(29)))) {
-                if (ScriptAliases.VEC_GetVectorNorm(new Vector3((((JFF2000)(Perso_4)).Int_0 + ((JFF2000)(Perso_4)).Int_19), (((JFF2000)(Perso_4)).Int_1 + ((JFF2000)(Perso_4)).Int_19), 0) - new Vector3((Int_0 + 30), (Int_1 + 55), 0)) < ((10 + ((JFF2000)(Perso_4)).Int_19) * 0.8)) {
+                if (ScriptAliases.VEC_GetVectorNorm(new Vector3((((JFF2000)(Perso_4)).Int_0 + ((JFF2000)(Perso_4)).Int_19), (((JFF2000)(Perso_4)).Int_1 + ((JFF2000)(Perso_4)).Int_19), 0) - new Vector3((Int_0_X + 30), (Int_1_Y + 55), 0)) < ((10 + ((JFF2000)(Perso_4)).Int_19) * 0.8)) {
                     Perso_4.Proc_ChangeOneCustomBit(28, true);
                     StartCoroutine(Macro_8());
                 }
@@ -228,9 +228,9 @@ namespace Menezis.AIModels
         private IEnumerator Rule_5_MIC_en1_paf()
         {
             // Script 0
-            Int_0 += (3 * Int_26);
-            Int_1 += (Int_9 * Int_26);
-            if (globalRandomizer % 4 == 0 && (Int_0 < -200 || Int_1 > 1000 || Int_16 < 15)) {
+            Int_0_X += (3 * Int_26);
+            Int_1_Y += (Int_9_YSpeed * Int_26);
+            if (globalRandomizer % 4 == 0 && (Int_0_X < -200 || Int_1_Y > 1000 || Int_16 < 15)) {
                 StartCoroutine(Macro_8());
             } else {
                 if (Boolean_15) {
@@ -245,7 +245,7 @@ namespace Menezis.AIModels
             }
 
             // Script 1
-            Int_9 += Int_26;
+            Int_9_YSpeed += Int_26;
             if (Int_16 > 6) {
                 Int_16 -= 6;
             }
@@ -257,16 +257,16 @@ namespace Menezis.AIModels
         {
             // Script 0
             if (Int_17 == 0) {
-                Int_0 += (Int_8 * Int_26);
-                Int_1 += (Int_9 * Int_26);
-                if (Int_9 > 0) {
-                    Int_9 += Int_26;
-                    if (Int_1 >= ((JFF2000)(Perso_4)).Int_1) {
+                Int_0_X += (Int_8_XSpeed * Int_26);
+                Int_1_Y += (Int_9_YSpeed * Int_26);
+                if (Int_9_YSpeed > 0) {
+                    Int_9_YSpeed += Int_26;
+                    if (Int_1_Y >= ((JFF2000)(Perso_4)).Int_1) {
                         Int_17 += 1;
                     }
                 } else {
-                    Int_9 -= Int_26;
-                    if (Int_1 <= ((JFF2000)(Perso_4)).Int_1) {
+                    Int_9_YSpeed -= Int_26;
+                    if (Int_1_Y <= ((JFF2000)(Perso_4)).Int_1) {
                         Int_17 += 1;
                     }
                 }
@@ -276,11 +276,11 @@ namespace Menezis.AIModels
                         if (Perso_6 != null) {
                             StartCoroutine(Macro_4());
                             ((AGO2000)(Perso_6)).Perso_4 = Perso_4;
-                            ((AGO2000)(Perso_6)).Int_5 = Int_13;
-                            ((AGO2000)(Perso_6)).Int_0 = Int_0;
-                            ((AGO2000)(Perso_6)).Int_1 = Int_1;
-                            ((AGO2000)(Perso_6)).Int_8 = (-8 - ((JFF2000)(Perso_4)).Int_31);
-                            ((AGO2000)(Perso_6)).Int_9 = 0;
+                            ((AGO2000)(Perso_6)).Int_5_TextLayer = Int_13;
+                            ((AGO2000)(Perso_6)).Int_0_X = Int_0_X;
+                            ((AGO2000)(Perso_6)).Int_1_Y = Int_1_Y;
+                            ((AGO2000)(Perso_6)).Int_8_XSpeed = (-8 - ((JFF2000)(Perso_4)).Int_31);
+                            ((AGO2000)(Perso_6)).Int_9_YSpeed = 0;
                             ((AGO2000)(Perso_6)).Int_2 = 3;
                             //ScriptAliases.GetPerso("StdCamer").SOUND_SendSoundRequest(SoundEvent(122947080));
                             //ScriptAliases.GetPerso("StdCamer").SOUND_SetVolumeAnim(30);
@@ -288,28 +288,28 @@ namespace Menezis.AIModels
                     }
                 }
             } else {
-                Int_0 += (Int_8 * Int_26);
-                if (Int_8 >= -(15 + ((JFF2000)(Perso_4)).Int_31)) {
-                    Int_8 -= Int_26;
+                Int_0_X += (Int_8_XSpeed * Int_26);
+                if (Int_8_XSpeed >= -(15 + ((JFF2000)(Perso_4)).Int_31)) {
+                    Int_8_XSpeed -= Int_26;
                 }
-                Int_1 += (Int_9 * Int_26);
-                if (Int_9 > 0) {
-                    if (Int_9 <= 2) {
-                        Int_9 = 0;
+                Int_1_Y += (Int_9_YSpeed * Int_26);
+                if (Int_9_YSpeed > 0) {
+                    if (Int_9_YSpeed <= 2) {
+                        Int_9_YSpeed = 0;
                     } else {
-                        Int_9 -= 3;
+                        Int_9_YSpeed -= 3;
                     }
                 } else {
-                    if (Int_9 >= -2) {
-                        Int_9 = 0;
+                    if (Int_9_YSpeed >= -2) {
+                        Int_9_YSpeed = 0;
                     } else {
-                        Int_9 += 3;
+                        Int_9_YSpeed += 3;
                     }
                 }
             }
 
             // Script 1
-            if (Int_0 < -200) {
+            if (Int_0_X < -200) {
                 StartCoroutine(Macro_8());
             } else {
                 StartCoroutine(Macro_7());
@@ -317,7 +317,7 @@ namespace Menezis.AIModels
 
             // Script 2
             StartCoroutine(Macro_12());
-            Int_7 = 5;
+            Int_7_ScoreValue = 5;
             StartCoroutine(Macro_6());
 
             yield return null;
@@ -326,9 +326,9 @@ namespace Menezis.AIModels
         private IEnumerator Rule_7_MIC_en5_go()
         {
             // Script 0
-            Int_0 += (Int_8 * Int_26);
-            Int_1 += (Int_9 * Int_26);
-            if (Int_0 < -200) {
+            Int_0_X += (Int_8_XSpeed * Int_26);
+            Int_1_Y += (Int_9_YSpeed * Int_26);
+            if (Int_0_X < -200) {
                 StartCoroutine(Macro_8());
             } else {
                 StartCoroutine(Macro_7());
@@ -339,10 +339,10 @@ namespace Menezis.AIModels
                 if (ScriptAliases.Cond_IsTimeElapsed(Int_10, Int_11)) {
                     if (ScriptAliases.Cond_IsTimeElapsed(Int_10, (4000 + Int_11))) {
                         Int_17 += 1;
-                        Int_8 = -2;
+                        Int_8_XSpeed = -2;
                     } else {
-                        Int_8 = 0;
-                        Int_9 = 0;
+                        Int_8_XSpeed = 0;
+                        Int_9_YSpeed = 0;
                         if (ScriptAliases.Cond_IsTimeElapsed(Int_19, 100)) {
                             Int_25 = 10;
                             StartCoroutine(Macro_11());
@@ -361,7 +361,7 @@ namespace Menezis.AIModels
             }
 
             // Script 2
-            Int_7 = 15;
+            Int_7_ScoreValue = 15;
             StartCoroutine(Macro_6());
 
             yield return null;
@@ -370,28 +370,28 @@ namespace Menezis.AIModels
         private IEnumerator Rule_8_MIC_en6_go()
         {
             // Script 0
-            Int_0 += (Int_8 * Int_26);
-            Int_1 += (Int_9 * Int_26);
+            Int_0_X += (Int_8_XSpeed * Int_26);
+            Int_1_Y += (Int_9_YSpeed * Int_26);
             if (Int_17 == 0) {
-                Int_9 += Int_26;
-                if (Int_1 >= Int_18) {
-                    Int_9 = -15;
-                    Int_1 = Int_18;
+                Int_9_YSpeed += Int_26;
+                if (Int_1_Y >= Int_18) {
+                    Int_9_YSpeed = -15;
+                    Int_1_Y = Int_18;
                 }
             } else {
-                Int_9 -= Int_26;
-                if (Int_1 <= Int_18) {
-                    Int_9 = 15;
-                    Int_1 = Int_18;
+                Int_9_YSpeed -= Int_26;
+                if (Int_1_Y <= Int_18) {
+                    Int_9_YSpeed = 15;
+                    Int_1_Y = Int_18;
                 }
             }
 
             // Script 1
-            if (Int_0 < -100 || Int_0 > 1000) {
+            if (Int_0_X < -100 || Int_0_X > 1000) {
                 if (Int_19 == 0) {
                     StartCoroutine(Macro_8());
                 } else {
-                    Int_8 = -Int_8;
+                    Int_8_XSpeed = -Int_8_XSpeed;
                     Int_19 -= 1;
                 }
             }
@@ -407,7 +407,7 @@ namespace Menezis.AIModels
             }
 
             // Script 3
-            Int_7 = 10;
+            Int_7_ScoreValue = 10;
             StartCoroutine(Macro_6());
 
             yield return null;
@@ -423,16 +423,16 @@ namespace Menezis.AIModels
             }
 
             // Script 1
-            if (((Int_18 * 4) - Int_23) > 255) {
+            if (((Int_18 * 4) - Int_23_Size) > 255) {
                 StartCoroutine(Macro_8());
             } else {
                 if (Int_22 == 0) {
-                    ScriptAliases.fn_p_stJFFTXTProcedure(Int_5, new Vector3((Int_0 - Int_18), (Int_1 - Int_18), Int_18), "/o600:x", (byte)((255 + Int_23) - (Int_18 * 4)));
+                    ScriptAliases.fn_p_stJFFTXTProcedure(Int_5_TextLayer, new Vector3((Int_0_X - Int_18), (Int_1_Y - Int_18), Int_18), "/o600:x", (byte)((255 + Int_23_Size) - (Int_18 * 4)));
                 } else {
                     if (Int_22 == 1) {
-                        ScriptAliases.fn_p_stJFFTXTProcedure(Int_5, new Vector3((Int_0 - Int_18), (Int_1 - Int_18), Int_18), "/o600:o", (byte)((255 + Int_23) - (Int_18 * 4)));
+                        ScriptAliases.fn_p_stJFFTXTProcedure(Int_5_TextLayer, new Vector3((Int_0_X - Int_18), (Int_1_Y - Int_18), Int_18), "/o600:o", (byte)((255 + Int_23_Size) - (Int_18 * 4)));
                     } else {
-                        ScriptAliases.fn_p_stJFFTXTProcedure(Int_5, new Vector3((Int_0 - Int_18), (Int_1 - Int_18), Int_18), "/o600:e", (byte)((255 + Int_23) - (Int_18 * 4)));
+                        ScriptAliases.fn_p_stJFFTXTProcedure(Int_5_TextLayer, new Vector3((Int_0_X - Int_18), (Int_1_Y - Int_18), Int_18), "/o600:e", (byte)((255 + Int_23_Size) - (Int_18 * 4)));
                     }
                 }
             }
@@ -445,8 +445,8 @@ namespace Menezis.AIModels
             // Script 0
             Int_18 += (8 * Int_26);
             Int_19 += Int_26;
-            Int_8 = ScriptAliases.Func_Int((ScriptAliases.Func_Sinus(Int_18) * (15 + (40 * ScriptAliases.Func_Sinus(Int_19)))));
-            Int_9 = ScriptAliases.Func_Int((ScriptAliases.Func_Cosinus(Int_18) * (15 + (40 * ScriptAliases.Func_Sinus(Int_19)))));
+            Int_8_XSpeed = ScriptAliases.Func_Int((ScriptAliases.Func_Sinus(Int_18) * (15 + (40 * ScriptAliases.Func_Sinus(Int_19)))));
+            Int_9_YSpeed = ScriptAliases.Func_Int((ScriptAliases.Func_Cosinus(Int_18) * (15 + (40 * ScriptAliases.Func_Sinus(Int_19)))));
             if (ScriptAliases.Cond_IsTimeElapsed(Int_10, 8000)) {
                 if (ScriptAliases.Cond_IsTimeElapsed(Int_10, (8000 + 4000))) {
                     StartCoroutine(Macro_8());
@@ -461,7 +461,7 @@ namespace Menezis.AIModels
             }
 
             // Script 1
-            if (ScriptAliases.VEC_GetVectorNorm(new Vector3((((JFF2000)(Perso_4)).Int_0 + ((JFF2000)(Perso_4)).Int_19), (((JFF2000)(Perso_4)).Int_1 + ((JFF2000)(Perso_4)).Int_19), 0) - new Vector3((Int_0 + Int_23), (Int_1 + Int_23), 0)) < (((JFF2000)(Perso_4)).Int_19 + Int_23)) {
+            if (ScriptAliases.VEC_GetVectorNorm(new Vector3((((JFF2000)(Perso_4)).Int_0 + ((JFF2000)(Perso_4)).Int_19), (((JFF2000)(Perso_4)).Int_1 + ((JFF2000)(Perso_4)).Int_19), 0) - new Vector3((Int_0_X + Int_23_Size), (Int_1_Y + Int_23_Size), 0)) < (((JFF2000)(Perso_4)).Int_19 + Int_23_Size)) {
                 ((JFF2000)(Perso_4)).Int_22 += 1;
                 //ScriptAliases.GetPerso("StdCamer").SOUND_SendSoundRequest(SoundEvent(122577408));
                 //ScriptAliases.GetPerso("StdCamer").SOUND_SetVolumeAnim(120);
@@ -469,7 +469,7 @@ namespace Menezis.AIModels
             }
 
             // Script 2
-            ScriptAliases.fn_p_stJFFTXTProcedure(Int_5, new Vector3((Int_0 + Int_8), (Int_1 + Int_9), Int_23), "/o400:!", (byte)Int_20);
+            ScriptAliases.fn_p_stJFFTXTProcedure(Int_5_TextLayer, new Vector3((Int_0_X + Int_8_XSpeed), (Int_1_Y + Int_9_YSpeed), Int_23_Size), "/o400:!", (byte)Int_20);
 
             yield return null;
         }
@@ -478,8 +478,8 @@ namespace Menezis.AIModels
         {
             // Script 0
             if (Int_17 == 0) {
-                if (!(Int_0 > 15)) {
-                    Int_0 += Int_26;
+                if (!(Int_0_X > 15)) {
+                    Int_0_X += Int_26;
                 } else {
                     Int_17 += 1;
                     Int_10 = ScriptAliases.Func_GetTime();
@@ -487,36 +487,36 @@ namespace Menezis.AIModels
                 }
             } else {
                 if (Int_17 == 2) {
-                    if (!(Int_0 < (-Int_23 - Int_23))) {
-                        Int_0 -= Int_26;
+                    if (!(Int_0_X < (-Int_23_Size - Int_23_Size))) {
+                        Int_0_X -= Int_26;
                     } else {
                         StartCoroutine(Macro_8());
                     }
                 } else {
                     if (ScriptAliases.Cond_IsTimeElapsed(Int_10, (1500 - (5 * ((JFF2000)(Perso_4)).Int_30)))) {
                         Int_25 = (6 + ScriptAliases.Func_RandomInt(0, 4));
-                        Vector_12 = ScriptAliases.Func_Normalize(new Vector3(((JFF2000)(Perso_4)).Int_0, ((JFF2000)(Perso_4)).Int_1, 0) - new Vector3(Int_0, Int_1, 0));
+                        Vector_12 = ScriptAliases.Func_Normalize(new Vector3(((JFF2000)(Perso_4)).Int_0, ((JFF2000)(Perso_4)).Int_1, 0) - new Vector3(Int_0_X, Int_1_Y, 0));
                         Int_19 = -ScriptAliases.Func_Int(ScriptAliases.VEC_AngleVector(new Vector3(1, 0, 0), Vector_12, 0));
                         Int_25 = (6 + ScriptAliases.Func_RandomInt(0, 4));
                         Int_18 = (Int_19 - 18);
                         StartCoroutine(Macro_11());
-                        yield return ScriptAliases.TIME_FrozenWait(1);
+                        //yield return ScriptAliases.TIME_FrozenWait(1);
                         Int_25 = (6 + ScriptAliases.Func_RandomInt(0, 4));
                         Int_18 = (Int_19 - 12);
                         StartCoroutine(Macro_11());
-                        yield return ScriptAliases.TIME_FrozenWait(1);
+                        //yield return ScriptAliases.TIME_FrozenWait(1);
                         Int_18 = (Int_19 - 6);
                         Int_25 = (6 + ScriptAliases.Func_RandomInt(0, 4));
                         StartCoroutine(Macro_11());
-                        yield return ScriptAliases.TIME_FrozenWait(1);
+                        //yield return ScriptAliases.TIME_FrozenWait(1);
                         Int_18 = Int_19;
                         Int_25 = (6 + ScriptAliases.Func_RandomInt(0, 4));
                         StartCoroutine(Macro_11());
-                        yield return ScriptAliases.TIME_FrozenWait(1);
+                        //yield return ScriptAliases.TIME_FrozenWait(1);
                         Int_18 = (Int_19 + 6);
                         Int_25 = (6 + ScriptAliases.Func_RandomInt(0, 4));
                         StartCoroutine(Macro_11());
-                        yield return ScriptAliases.TIME_FrozenWait(1);
+                        //yield return ScriptAliases.TIME_FrozenWait(1);
                         Int_18 = (Int_19 + 12);
                         Int_25 = (6 + ScriptAliases.Func_RandomInt(0, 4));
                         StartCoroutine(Macro_11());
@@ -553,7 +553,7 @@ namespace Menezis.AIModels
 
         private IEnumerator Macro_0()
         {
-            if (ScriptAliases.VEC_GetVectorNorm(new Vector3((((AGO2000)(Perso_6)).Int_0 + 30), (((AGO2000)(Perso_6)).Int_1 + 54), 0) - new Vector3((Int_0 + Int_23), (Int_1 + Int_23), 0)) < ((Int_23 + ((AGO2000)(Perso_6)).Int_23) * 1.5)) {
+            if (ScriptAliases.VEC_GetVectorNorm(new Vector3((((AGO2000)(Perso_6)).Int_0_X + 30), (((AGO2000)(Perso_6)).Int_1_Y + 54), 0) - new Vector3((Int_0_X + Int_23_Size), (Int_1_Y + Int_23_Size), 0)) < ((Int_23_Size + ((AGO2000)(Perso_6)).Int_23_Size) * 1.5)) {
                 Proc_ChangeOneCustomBit(29, true);
                 Perso_6.Proc_ChangeOneCustomBit(28, true);
                 if (!(Int_21!=0)) {
@@ -563,11 +563,11 @@ namespace Menezis.AIModels
                         StartCoroutine(Macro_13());
                     }
                     StartCoroutine(Macro_1());
-                    Int_9 = -20;
+                    Int_9_YSpeed = -20;
                     Int_16 = 255;
                     sm.ChangeActiveRuleState(Rule_5_MIC_en1_paf);
                 } else {
-                    Int_7 = 1;
+                    Int_7_ScoreValue = 1;
                     StartCoroutine(Macro_1());
                     StartCoroutine(Macro_14());
                     Int_21 -= 1;
@@ -581,7 +581,7 @@ namespace Menezis.AIModels
 
         private IEnumerator Macro_1()
         {
-            ((JFF2000)(Perso_4)).Int_13 += Int_7;
+            ((JFF2000)(Perso_4)).Int_13_Score += Int_7_ScoreValue;
 
             yield return null;
         }
@@ -589,17 +589,17 @@ namespace Menezis.AIModels
         private IEnumerator Macro_2()
         {
             if (globalRandomizer % 4 == 0 && (true)) {
-                if (Int_0 > 1000) {
+                if (Int_0_X > 1000) {
                     StartCoroutine(Macro_8());
                 } else {
-                    if (Int_0 < (2 * -Int_23)) {
+                    if (Int_0_X < (2 * -Int_23_Size)) {
                         StartCoroutine(Macro_8());
                     }
                 }
-                if (Int_1 > 1000) {
+                if (Int_1_Y > 1000) {
                     StartCoroutine(Macro_8());
                 } else {
-                    if (Int_1 < (2 * -Int_23)) {
+                    if (Int_1_Y < (2 * -Int_23_Size)) {
                         StartCoroutine(Macro_8());
                     }
                 }
@@ -635,7 +635,7 @@ namespace Menezis.AIModels
 
         private IEnumerator Macro_5()
         {
-            ScriptAliases.GetPerso<World>("World").IntegerArray_25[Int_5] = 0;
+            ScriptAliases.GetPerso<World>("World").IntegerArray_25[Int_5_TextLayer] = 0;
             ((JFF2000)(Perso_4)).Int_23 -= 1;
 
             yield return null;
@@ -664,20 +664,20 @@ namespace Menezis.AIModels
         {
             if (Int_22 == 0) {
                 if (Int_24 == 0) {
-                    ScriptAliases.fn_p_stJFFTXTProcedure(Int_5, new Vector3(Int_0, Int_1, Int_23), "/o200:x", (byte)Int_16);
+                    ScriptAliases.fn_p_stJFFTXTProcedure(Int_5_TextLayer, new Vector3(Int_0_X, Int_1_Y, Int_23_Size), "/o200:x", (byte)Int_16);
                 } else {
-                    ScriptAliases.fn_p_stJFFTXTProcedure(Int_5, new Vector3(Int_0, Int_1, Int_23), "/o600:x", (byte)Int_16);
+                    ScriptAliases.fn_p_stJFFTXTProcedure(Int_5_TextLayer, new Vector3(Int_0_X, Int_1_Y, Int_23_Size), "/o600:x", (byte)Int_16);
                 }
             } else {
                 if (Int_22 == 1) {
                     if (Int_24 == 0) {
-                        ScriptAliases.fn_p_stJFFTXTProcedure(Int_5, new Vector3(Int_0, Int_1, Int_23), "/o200:0", (byte)Int_16);
+                        ScriptAliases.fn_p_stJFFTXTProcedure(Int_5_TextLayer, new Vector3(Int_0_X, Int_1_Y, Int_23_Size), "/o200:0", (byte)Int_16);
                     } else {
-                        ScriptAliases.fn_p_stJFFTXTProcedure(Int_5, new Vector3(Int_0, Int_1, Int_23), "/o600:0", (byte)Int_16);
+                        ScriptAliases.fn_p_stJFFTXTProcedure(Int_5_TextLayer, new Vector3(Int_0_X, Int_1_Y, Int_23_Size), "/o600:0", (byte)Int_16);
                     }
                 } else {
                     if (Int_22 == 2) {
-                        ScriptAliases.fn_p_stJFFTXTProcedure(Int_5, new Vector3(Int_0, Int_1, Int_23), "/o200:8", (byte)Int_16);
+                        ScriptAliases.fn_p_stJFFTXTProcedure(Int_5_TextLayer, new Vector3(Int_0_X, Int_1_Y, Int_23_Size), "/o200:8", (byte)Int_16);
                     }
                 }
             }
@@ -687,7 +687,7 @@ namespace Menezis.AIModels
 
         private IEnumerator Macro_8()
         {
-            ScriptAliases.fn_p_stJFFTXTProcedure(Int_5, new Vector3(0, 0, 0), "/o200:x", 0);
+            ScriptAliases.fn_p_stJFFTXTProcedure(Int_5_TextLayer, new Vector3(0, 0, 0), "/o200:x", 0);
             StartCoroutine(Macro_5());
             ScriptAliases.fn_p_stKillPersoAndClearVariableProcedure1(this);
 
@@ -699,14 +699,14 @@ namespace Menezis.AIModels
             if (((JFF2000)(Perso_4)).Int_23 < 25) {
                 Perso_6 = ScriptAliases.Func_GenerateObject(GetType(), ScriptAliases.GetPerso("StdCamer").Position());
                 if (Perso_6 != null) {
-                    Vector_12 = ScriptAliases.Func_Normalize(new Vector3(((JFF2000)(Perso_4)).Int_0, ((JFF2000)(Perso_4)).Int_1, 0) - new Vector3(Int_0, Int_1, 0));
+                    Vector_12 = ScriptAliases.Func_Normalize(new Vector3(((JFF2000)(Perso_4)).Int_0, ((JFF2000)(Perso_4)).Int_1, 0) - new Vector3(Int_0_X, Int_1_Y, 0));
                     StartCoroutine(Macro_4());
                     ((AGO2000)(Perso_6)).Perso_4 = Perso_4;
-                    ((AGO2000)(Perso_6)).Int_5 = Int_13;
-                    ((AGO2000)(Perso_6)).Int_0 = Int_0;
-                    ((AGO2000)(Perso_6)).Int_1 = Int_1;
-                    ((AGO2000)(Perso_6)).Int_8 = ScriptAliases.Func_Int((Vector_12.x * (Int_25 + ((JFF2000)(Perso_4)).Int_31)));
-                    ((AGO2000)(Perso_6)).Int_9 = ScriptAliases.Func_Int((Vector_12.y * (Int_25 + ((JFF2000)(Perso_4)).Int_31)));
+                    ((AGO2000)(Perso_6)).Int_5_TextLayer = Int_13;
+                    ((AGO2000)(Perso_6)).Int_0_X = Int_0_X;
+                    ((AGO2000)(Perso_6)).Int_1_Y = Int_1_Y;
+                    ((AGO2000)(Perso_6)).Int_8_XSpeed = ScriptAliases.Func_Int((Vector_12.x * (Int_25 + ((JFF2000)(Perso_4)).Int_31)));
+                    ((AGO2000)(Perso_6)).Int_9_YSpeed = ScriptAliases.Func_Int((Vector_12.y * (Int_25 + ((JFF2000)(Perso_4)).Int_31)));
                     ((AGO2000)(Perso_6)).Int_2 = 3;
                     ((AGO2000)(Perso_6)).Int_17 = 0;
                     //SOUND_SendSoundRequest(SoundEvent(122465704));
@@ -722,14 +722,14 @@ namespace Menezis.AIModels
             if (((JFF2000)(Perso_4)).Int_23 < 25) {
                 Perso_6 = ScriptAliases.Func_GenerateObject(GetType(), ScriptAliases.GetPerso("StdCamer").Position());
                 if (Perso_6 != null) {
-                    Vector_12 = ScriptAliases.Func_Normalize(new Vector3(((JFF2000)(Perso_4)).Int_0, ((JFF2000)(Perso_4)).Int_1, 0) - new Vector3(Int_0, Int_1, 0));
+                    Vector_12 = ScriptAliases.Func_Normalize(new Vector3(((JFF2000)(Perso_4)).Int_0, ((JFF2000)(Perso_4)).Int_1, 0) - new Vector3(Int_0_X, Int_1_Y, 0));
                     StartCoroutine(Macro_4());
                     ((AGO2000)(Perso_6)).Perso_4 = Perso_4;
-                    ((AGO2000)(Perso_6)).Int_5 = Int_13;
-                    ((AGO2000)(Perso_6)).Int_0 = Int_0;
-                    ((AGO2000)(Perso_6)).Int_1 = Int_1;
-                    ((AGO2000)(Perso_6)).Int_8 = ScriptAliases.Func_Int((Vector_12.x * (Int_25 + ((JFF2000)(Perso_4)).Int_31)));
-                    ((AGO2000)(Perso_6)).Int_9 = ScriptAliases.Func_Int((Vector_12.y * (Int_25 + ((JFF2000)(Perso_4)).Int_31)));
+                    ((AGO2000)(Perso_6)).Int_5_TextLayer = Int_13;
+                    ((AGO2000)(Perso_6)).Int_0_X = Int_0_X;
+                    ((AGO2000)(Perso_6)).Int_1_Y = Int_1_Y;
+                    ((AGO2000)(Perso_6)).Int_8_XSpeed = ScriptAliases.Func_Int((Vector_12.x * (Int_25 + ((JFF2000)(Perso_4)).Int_31)));
+                    ((AGO2000)(Perso_6)).Int_9_YSpeed = ScriptAliases.Func_Int((Vector_12.y * (Int_25 + ((JFF2000)(Perso_4)).Int_31)));
                     ((AGO2000)(Perso_6)).Int_2 = 3;
                     ((AGO2000)(Perso_6)).Int_17 = 1;
                     //SOUND_SendSoundRequest(SoundEvent(123169304));
@@ -747,11 +747,11 @@ namespace Menezis.AIModels
                 if (Perso_6 != null) {
                     StartCoroutine(Macro_4());
                     ((AGO2000)(Perso_6)).Perso_4 = Perso_4;
-                    ((AGO2000)(Perso_6)).Int_5 = Int_13;
-                    ((AGO2000)(Perso_6)).Int_0 = (Int_0 + 13);
-                    ((AGO2000)(Perso_6)).Int_1 = (Int_1 - 15);
-                    ((AGO2000)(Perso_6)).Int_8 = ScriptAliases.Func_Int((ScriptAliases.Func_Cosinus(Int_18) * (Int_25 + ((JFF2000)(Perso_4)).Int_31)));
-                    ((AGO2000)(Perso_6)).Int_9 = -ScriptAliases.Func_Int((ScriptAliases.Func_Sinus(Int_18) * (Int_25 + ((JFF2000)(Perso_4)).Int_31)));
+                    ((AGO2000)(Perso_6)).Int_5_TextLayer = Int_13;
+                    ((AGO2000)(Perso_6)).Int_0_X = (Int_0_X + 13);
+                    ((AGO2000)(Perso_6)).Int_1_Y = (Int_1_Y - 15);
+                    ((AGO2000)(Perso_6)).Int_8_XSpeed = ScriptAliases.Func_Int((ScriptAliases.Func_Cosinus(Int_18) * (Int_25 + ((JFF2000)(Perso_4)).Int_31)));
+                    ((AGO2000)(Perso_6)).Int_9_YSpeed = -ScriptAliases.Func_Int((ScriptAliases.Func_Sinus(Int_18) * (Int_25 + ((JFF2000)(Perso_4)).Int_31)));
                     ((AGO2000)(Perso_6)).Int_2 = 3;
                     //SOUND_SendSoundRequest(SoundEvent(122465704));
                     //SOUND_SetVolumeAnim(60);
@@ -764,9 +764,9 @@ namespace Menezis.AIModels
         private IEnumerator Macro_12()
         {
             if (globalRandomizer % 2 == 0 && (!(Perso_4.Cond_IsCustomBitSet(29)))) {
-                if (ScriptAliases.VEC_GetVectorNorm(new Vector3((((JFF2000)(Perso_4)).Int_0 + 30), (((JFF2000)(Perso_4)).Int_1 + 30), 0) - new Vector3((Int_0 + 40), (Int_1 + 40), 0)) < 70) {
+                if (ScriptAliases.VEC_GetVectorNorm(new Vector3((((JFF2000)(Perso_4)).Int_0 + 30), (((JFF2000)(Perso_4)).Int_1 + 30), 0) - new Vector3((Int_0_X + 40), (Int_1_Y + 40), 0)) < 70) {
                     Perso_4.Proc_ChangeOneCustomBit(28, true);
-                    Int_9 = -20;
+                    Int_9_YSpeed = -20;
                     Int_16 = 255;
                     //SOUND_SendSoundRequest(SoundEvent(122806064));
                     //SOUND_SetVolumeAnim(60);
@@ -784,9 +784,9 @@ namespace Menezis.AIModels
                 if (Perso_6 != null) {
                     StartCoroutine(Macro_4());
                     ((AGO2000)(Perso_6)).Perso_4 = Perso_4;
-                    ((AGO2000)(Perso_6)).Int_5 = Int_13;
-                    ((AGO2000)(Perso_6)).Int_0 = Int_0;
-                    ((AGO2000)(Perso_6)).Int_1 = Int_1;
+                    ((AGO2000)(Perso_6)).Int_5_TextLayer = Int_13;
+                    ((AGO2000)(Perso_6)).Int_0_X = Int_0_X;
+                    ((AGO2000)(Perso_6)).Int_1_Y = Int_1_Y;
                     ((AGO2000)(Perso_6)).Int_2 = 8;
                     Perso_4.Proc_ChangeOneCustomBit(31, false);
                 }
@@ -802,12 +802,12 @@ namespace Menezis.AIModels
                 if (Perso_6!=null) {
                     StartCoroutine(Macro_4());
                     ((AGO2000)(Perso_6)).Perso_4 = Perso_4;
-                    ((AGO2000)(Perso_6)).Int_5 = Int_13;
-                    ((AGO2000)(Perso_6)).Int_0 = Int_0;
-                    ((AGO2000)(Perso_6)).Int_1 = Int_1;
+                    ((AGO2000)(Perso_6)).Int_5_TextLayer = Int_13;
+                    ((AGO2000)(Perso_6)).Int_0_X = Int_0_X;
+                    ((AGO2000)(Perso_6)).Int_1_Y = Int_1_Y;
                     ((AGO2000)(Perso_6)).Int_2 = 7;
                     ((AGO2000)(Perso_6)).Int_22 = Int_22;
-                    ((AGO2000)(Perso_6)).Int_23 = Int_23;
+                    ((AGO2000)(Perso_6)).Int_23_Size = Int_23_Size;
                 }
             }
 
@@ -817,7 +817,7 @@ namespace Menezis.AIModels
         private IEnumerator Macro_15()
         {
             if (globalRandomizer % 2 == 0 && (!(Perso_4.Cond_IsCustomBitSet(29)))) {
-                if (ScriptAliases.VEC_GetVectorNorm(new Vector3((((JFF2000)(Perso_4)).Int_0 + 30), (((JFF2000)(Perso_4)).Int_1 + 30), 0) - new Vector3((Int_0 + 40), (Int_1 + 40), 0)) < 70) {
+                if (ScriptAliases.VEC_GetVectorNorm(new Vector3((((JFF2000)(Perso_4)).Int_0 + 30), (((JFF2000)(Perso_4)).Int_1 + 30), 0) - new Vector3((Int_0_X + 40), (Int_1_Y + 40), 0)) < 70) {
                     Perso_4.Proc_ChangeOneCustomBit(28, true);
                 }
             }

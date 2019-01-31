@@ -75,6 +75,8 @@ namespace Menezis {
 
             textComponent.text = r2Text.textContent;
 
+            Canvas.ForceUpdateCanvases();
+
             if (r2Text.isCentered) {
                 // Align upper center
                 textTransform.localPosition = new Vector3(0, textTransform.localPosition.y, 0) - new Vector3(0, textComponent.preferredHeight/2, 0);

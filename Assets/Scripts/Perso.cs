@@ -15,8 +15,6 @@ namespace Menezis {
         protected int globalRandomizer;
         private float timeSinceLastFrame;
 
-        private bool delayUpdate = false; 
-
         public string ActiveRule
         {
             get

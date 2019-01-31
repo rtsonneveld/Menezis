@@ -573,6 +573,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: World
       objectReference: {fileID: 0}
+    - target: {fileID: 7312420803980378057, guid: 8fc605beabe54304485c0e4d1ae9d489,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7312420803980378059, guid: 8fc605beabe54304485c0e4d1ae9d489,
         type: 3}
       propertyPath: m_LocalPosition.x
