@@ -10,7 +10,8 @@ namespace Menezis {
 
         protected StateMachine smRule;
         protected StateMachine smReflex;
-        protected CustomBits customBits;
+
+        public CustomBits customBits;
 
         // Used for scripts:
         protected int globalRandomizer;
@@ -40,7 +41,7 @@ namespace Menezis {
             customBits = new CustomBits(32);
         }
 
-        async void Update()
+        protected async void Update()
         {
             timeSinceLastFrame += Time.deltaTime;
             if (timeSinceLastFrame > 1.0f/60.0f) {
@@ -66,23 +67,6 @@ namespace Menezis {
         {
             this.smRule?.DelayUpdate();
             this.smReflex?.DelayUpdate();
-        }
-
-        public Vector3 Position()
-        {
-            return this.transform.position;
-        }
-
-        public void Proc_ChangeOneCustomBit(int index, bool value)
-        {
-            // Rayman 2 uses indexes here that start with 1 instead of 0
-            customBits.SetCustomBit(index - 1, value);
-        }
-
-        public bool Cond_IsCustomBitSet(int index)
-        {
-            // Rayman 2 uses indexes here that start with 1 instead of 0
-            return customBits.GetCustomBit(index - 1);
         }
     }
 }
