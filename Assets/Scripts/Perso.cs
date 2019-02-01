@@ -8,7 +8,8 @@ using UnityEngine;
 namespace Menezis {
     public class Perso : MonoBehaviour {
 
-        protected StateMachine sm;
+        protected StateMachine smRule;
+        protected StateMachine smReflex;
         protected CustomBits customBits;
 
         // Used for scripts:
@@ -19,7 +20,7 @@ namespace Menezis {
         {
             get
             {
-                return sm?.activeRuleState?.ToString();
+                return smRule?.ActiveState?.ToString();
             }
         }
 
@@ -27,20 +28,19 @@ namespace Menezis {
         {
             get
             {
-                return sm?.activeReflexState?.ToString();
+                return smReflex?.ActiveState?.ToString();
             }
         }
 
         protected virtual void Start()
         {
-            sm = new StateMachine(this);
-            customBits = new CustomBits(32);
+            smRule = new StateMachine(this);
+            smReflex = new StateMachine(this);
 
-            StartCoroutine(UpdateStateMachineRule());
-            StartCoroutine(UpdateStateMachineReflex());
+            customBits = new CustomBits(32);
         }
 
-        void Update()
+        async void Update()
         {
             timeSinceLastFrame += Time.deltaTime;
             if (timeSinceLastFrame > 1.0f/60.0f) {
@@ -48,26 +48,24 @@ namespace Menezis {
                 globalRandomizer += 1;
             }
 
+            if (!smRule.Busy) {
+                await smRule.Update();
+            }
+            if (!smReflex.Busy) {
+                await smReflex.Update();
+            }
+
             // No more delaying of updates
-            sm.ResetDelayUpdate();
+            smRule.ResetDelayUpdate();
+            smReflex.ResetDelayUpdate();
 
         }
 
-        // Delay update by a frame
+        // Delay updates by a frame
         public void DelayUpdate()
         {
-            this.sm?.DelayUpdate();
-        }
-
-
-        protected IEnumerator UpdateStateMachineRule()
-        {
-            yield return sm.UpdateRule();
-        }
-
-        protected IEnumerator UpdateStateMachineReflex()
-        {
-            yield return sm.UpdateReflex();
+            this.smRule?.DelayUpdate();
+            this.smReflex?.DelayUpdate();
         }
 
         public Vector3 Position()

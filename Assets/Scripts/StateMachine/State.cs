@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 namespace Menezis {
     public class State {
         public StateMachine stateMachine;
-        public Func<IEnumerator> action;
+        public Func<Task> action;
 
         private State(){}
 
-        public static State Create(Func<IEnumerator> action)
+        public static State Create(Func<Task> action)
         {
             State state = new State();
             state.action = action;
             return state;
         }
 
-        public IEnumerator Update()
+        public async Task Update()
         {
-            yield return action?.DynamicInvoke();
+            await action?.Invoke();
         }
 
         public override String ToString()

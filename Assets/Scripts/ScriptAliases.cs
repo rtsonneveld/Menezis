@@ -31,9 +31,9 @@ namespace Menezis {
             return (float)Math.Cos((a / 180) * Math.PI);
         }
 
-        public static IEnumerator TIME_FrozenWait(int milliseconds)
+        public static async Task TIME_FrozenWait(int milliseconds)
         {
-            yield return new WaitForSeconds(((float)milliseconds) / 1000.0f);
+            await new WaitForSeconds(((float)milliseconds) / 1000.0f);
         }
 
         static int counter = 0;
@@ -124,12 +124,12 @@ namespace Menezis {
 
         public static float PadHorizontalAxis()
         {
-            return (Input.GetAxisRaw("Horizontal") * 160);
+            return (Input.GetAxisRaw("Horizontal") * 160) *0.5f;
         }
 
         public static float PadVerticalAxis()
         {
-            return (-Input.GetAxisRaw("Vertical") * 160);
+            return (-Input.GetAxisRaw("Vertical") * 160) * 0.5f;
         }
 
         public static float Func_AbsoluteValue(float v)
